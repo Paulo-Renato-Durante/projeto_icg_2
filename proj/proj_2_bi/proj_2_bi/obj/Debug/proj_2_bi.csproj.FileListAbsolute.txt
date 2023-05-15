@@ -1,0 +1,20 @@
+C:\Users\aluno\Desktop\proj\proj_2_bi\proj_2_bi\bin\Debug\proj_2_bi.exe.config
+C:\Users\aluno\Desktop\proj\proj_2_bi\proj_2_bi\bin\Debug\proj_2_bi.exe
+C:\Users\aluno\Desktop\proj\proj_2_bi\proj_2_bi\bin\Debug\proj_2_bi.pdb
+C:\Users\aluno\Desktop\proj\proj_2_bi\proj_2_bi\obj\Debug\proj_2_bi.csprojAssemblyReference.cache
+C:\Users\aluno\Desktop\proj\proj_2_bi\proj_2_bi\obj\Debug\proj_2_bi.Form1.resources
+C:\Users\aluno\Desktop\proj\proj_2_bi\proj_2_bi\obj\Debug\proj_2_bi.Properties.Resources.resources
+C:\Users\aluno\Desktop\proj\proj_2_bi\proj_2_bi\obj\Debug\proj_2_bi.csproj.GenerateResource.cache
+C:\Users\aluno\Desktop\proj\proj_2_bi\proj_2_bi\obj\Debug\proj_2_bi.csproj.CoreCompileInputs.cache
+C:\Users\aluno\Desktop\proj\proj_2_bi\proj_2_bi\obj\Debug\proj_2_bi.exe
+C:\Users\aluno\Desktop\proj\proj_2_bi\proj_2_bi\obj\Debug\proj_2_bi.pdb
+C:\Users\Ana Paula\Documents\projetos\icg\2_bi\progeto_2\proj\proj_2_bi\proj_2_bi\bin\Debug\proj_2_bi.exe.config
+C:\Users\Ana Paula\Documents\projetos\icg\2_bi\progeto_2\proj\proj_2_bi\proj_2_bi\bin\Debug\proj_2_bi.exe
+C:\Users\Ana Paula\Documents\projetos\icg\2_bi\progeto_2\proj\proj_2_bi\proj_2_bi\bin\Debug\proj_2_bi.pdb
+C:\Users\Ana Paula\Documents\projetos\icg\2_bi\progeto_2\proj\proj_2_bi\proj_2_bi\obj\Debug\proj_2_bi.csproj.AssemblyReference.cache
+C:\Users\Ana Paula\Documents\projetos\icg\2_bi\progeto_2\proj\proj_2_bi\proj_2_bi\obj\Debug\proj_2_bi.Form1.resources
+C:\Users\Ana Paula\Documents\projetos\icg\2_bi\progeto_2\proj\proj_2_bi\proj_2_bi\obj\Debug\proj_2_bi.Properties.Resources.resources
+C:\Users\Ana Paula\Documents\projetos\icg\2_bi\progeto_2\proj\proj_2_bi\proj_2_bi\obj\Debug\proj_2_bi.csproj.GenerateResource.cache
+C:\Users\Ana Paula\Documents\projetos\icg\2_bi\progeto_2\proj\proj_2_bi\proj_2_bi\obj\Debug\proj_2_bi.csproj.CoreCompileInputs.cache
+C:\Users\Ana Paula\Documents\projetos\icg\2_bi\progeto_2\proj\proj_2_bi\proj_2_bi\obj\Debug\proj_2_bi.exe
+C:\Users\Ana Paula\Documents\projetos\icg\2_bi\progeto_2\proj\proj_2_bi\proj_2_bi\obj\Debug\proj_2_bi.pdb

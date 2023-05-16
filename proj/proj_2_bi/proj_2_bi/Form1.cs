@@ -161,6 +161,10 @@ namespace proj_2_bi
             }else if(pentagono == true && click == 5){
                 Invalidate();
             }
+            else if (circulo == true && click > 0)
+            {
+                Invalidate();
+            }
         }
 
         private void Form1_MouseMove_1(object sender, MouseEventArgs e)
@@ -179,6 +183,12 @@ namespace proj_2_bi
             retaBreseham(pontos[2], pontos[3], pontos[4], pontos[5], e);
             retaBreseham(pontos[4], pontos[5], pontos[0], pontos[1], e);
         }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
         public void controladorQuadrilatero(PaintEventArgs e)
         {
             int largura = Math.Abs(pontos[0] - pontos[2]);
@@ -215,7 +225,15 @@ namespace proj_2_bi
         {
             desenhaFormas(e, pontos);
         }
+        public void controladorCirculo(PaintEventArgs e)
+        {
+            desenharCirculo(pontos[0], pontos[1], int.Parse(Raio.Text), e);
+        }
 
+        public void controlarElipse(PaintEventArgs e)
+        {
+            desenharElipse(pontos[0], pontos[1], int.Parse(Largura.Text), int.Parse(Altura.Text), e);
+        }
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
             // TO-DO: calculo no controleLosango e no controlePentagono para não crusar as linhas
@@ -225,9 +243,18 @@ namespace proj_2_bi
                 controladorLinha(e);
                 zerarPontos();
             }
-            else if (circulo)
+            else if (circulo && click > 0)
             {
+                if (string.IsNullOrEmpty(Raio.Text) && string.IsNullOrEmpty(Altura.Text) == false && string.IsNullOrEmpty(Largura.Text) == false)
+                {
+                    controlarElipse(e);
+                }
+                else if (string.IsNullOrEmpty(Altura.Text) && string.IsNullOrEmpty(Largura.Text) && string.IsNullOrEmpty(Raio.Text) == false)
+                {
+                    controladorCirculo(e);
+                }
 
+                zerarPontos();
             }
             else if (quadrado)
             {

@@ -35,6 +35,9 @@ namespace proj_2_bi
             this.btn_triangulo = new System.Windows.Forms.Button();
             this.btn_pentagono = new System.Windows.Forms.Button();
             this.btn_quadrado = new System.Windows.Forms.Button();
+            this.Raio = new System.Windows.Forms.TextBox();
+            this.Altura = new System.Windows.Forms.TextBox();
+            this.Largura = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // btn_linha
@@ -98,11 +101,36 @@ namespace proj_2_bi
             this.btn_quadrado.UseVisualStyleBackColor = true;
             this.btn_quadrado.Click += new System.EventHandler(this.btn_quadrado_Click);
             // 
+            // Raio
+            // 
+            this.Raio.Location = new System.Drawing.Point(52, 60);
+            this.Raio.Name = "Raio";
+            this.Raio.Size = new System.Drawing.Size(66, 20);
+            this.Raio.TabIndex = 6;
+            this.Raio.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
+            // Altura
+            // 
+            this.Altura.Location = new System.Drawing.Point(126, 60);
+            this.Altura.Name = "Altura";
+            this.Altura.Size = new System.Drawing.Size(64, 20);
+            this.Altura.TabIndex = 7;
+            // 
+            // Largura
+            // 
+            this.Largura.Location = new System.Drawing.Point(196, 60);
+            this.Largura.Name = "Largura";
+            this.Largura.Size = new System.Drawing.Size(66, 20);
+            this.Largura.TabIndex = 8;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.Largura);
+            this.Controls.Add(this.Altura);
+            this.Controls.Add(this.Raio);
             this.Controls.Add(this.btn_pentagono);
             this.Controls.Add(this.btn_triangulo);
             this.Controls.Add(this.btn_losangulo);
@@ -117,6 +145,7 @@ namespace proj_2_bi
             this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseClick);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseMove_1);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -128,6 +157,9 @@ namespace proj_2_bi
         private System.Windows.Forms.Button btn_triangulo;
         private System.Windows.Forms.Button btn_pentagono;
         private System.Windows.Forms.Button btn_quadrado;
+        private System.Windows.Forms.TextBox Raio;
+        private System.Windows.Forms.TextBox Altura;
+        private System.Windows.Forms.TextBox Largura;
     }
 }
 

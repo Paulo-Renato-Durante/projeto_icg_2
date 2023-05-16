@@ -14,7 +14,8 @@ namespace proj_2_bi
     {
         int click;
         int[] pontos = new int[10];
-        bool linha, circulo, quadrado, losango, triangulo, pentagono;
+        bool linha, circulo, quadrado, losango, triangulo, pentagono, selecionado;
+        Pen canetinha;
         public Color cor(int r, int g, int b)
         {
             return Color.FromArgb(r, g, b);
@@ -23,35 +24,36 @@ namespace proj_2_bi
         {
             return new Pen(cor, espessura);
         }
-        public void retaBreseham(int x0, int y0, int x1, int y1, Pen caneta, PaintEventArgs e)
+        public void retaBreseham(int x0, int y0, int x1, int y1, PaintEventArgs e)
         {
-            e.Graphics.DrawLine(caneta, x0, y0, x1, y1);
+            e.Graphics.DrawLine(canetinha, x0, y0, x1, y1);
         }
-        public void pintap(int x, int y,Pen caneta, PaintEventArgs e)
+        public void pintap(int x, int y, PaintEventArgs e)
         {
-            e.Graphics.DrawLine(caneta, x, y, x + 1, y);
+            e.Graphics.DrawLine(canetinha, x, y, x + 1, y);
         }
-        public void desenhaQuadrilatero(PaintEventArgs e,int x, int y, int altura, int largura, Pen caneta)
+        public void desenhaQuadrilatero(PaintEventArgs e,int x, int y, int altura, int largura)
         {
-            e.Graphics.DrawRectangle(caneta, x, y, largura, altura);
+            e.Graphics.DrawRectangle(canetinha, x, y, largura, altura);
         }
-        public void desenharCirculo(int xc, int yc, int raio,Pen caneta, PaintEventArgs e)
+        public void desenharCirculo(int xc, int yc, int raio, PaintEventArgs e)
         {
-            e.Graphics.DrawEllipse(caneta, xc, yc, raio, raio);
+            e.Graphics.DrawEllipse(canetinha, xc, yc, raio, raio);
         }
-        public void desenharElipse(int xc, int yc, int raiox, int raioy, Pen caneta, PaintEventArgs e)
+        public void desenharElipse(int xc, int yc, int raiox, int raioy, PaintEventArgs e)
         {
-            e.Graphics.DrawEllipse(caneta, xc, yc, raiox, raioy);
+            e.Graphics.DrawEllipse(canetinha, xc, yc, raiox, raioy);
         }
 
-        public void desenhaFormas(PaintEventArgs e, int[] pontos,Pen caneta)
+        public void desenhaFormas(PaintEventArgs e, int[] pontos)
         {
             for (int i = 0; i < pontos.Length - 2; i += 2)
             {
-                retaBreseham(pontos[i], pontos[i + 1], pontos[i + 2], pontos[i + 3], caneta, e);
+                retaBreseham(pontos[i], pontos[i + 1], pontos[i + 2], pontos[i + 3], e);
             }
-            retaBreseham(pontos[0], pontos[1], pontos[pontos.Length - 2], pontos[pontos.Length - 1], caneta, e);
+            retaBreseham(pontos[0], pontos[1], pontos[pontos.Length - 2], pontos[pontos.Length - 1], e);
         }
+
         public void setFalse()
         {
             linha = false;
@@ -60,6 +62,7 @@ namespace proj_2_bi
             losango = false;
             triangulo = false;
             pentagono = false;
+            selecionado = false;
         }
         public void zerarPontos()
         {
@@ -77,6 +80,7 @@ namespace proj_2_bi
             zerarPontos();
             setFalse();
             linha = true;
+            selecionado = true;
         }
 
         private void btn_circulo_Click(object sender, EventArgs e)
@@ -84,6 +88,7 @@ namespace proj_2_bi
             zerarPontos();
             setFalse();
             circulo = true;
+            selecionado = true;
         }
 
         private void btn_quadrado_Click(object sender, EventArgs e)
@@ -91,6 +96,7 @@ namespace proj_2_bi
             zerarPontos();
             setFalse();
             quadrado = true;
+            selecionado = true;
         }
 
         private void btn_losangulo_Click(object sender, EventArgs e)
@@ -98,13 +104,15 @@ namespace proj_2_bi
             zerarPontos();
             setFalse();
             losango = true;
+            selecionado = true;
         }
 
         private void btn_triangulo_Click(object sender, EventArgs e)
         {
             zerarPontos();
             setFalse();
-            triangulo = false;
+            triangulo = true;
+            selecionado = true;
         }
 
         private void btn_pentagono_Click(object sender, EventArgs e)
@@ -112,6 +120,7 @@ namespace proj_2_bi
             zerarPontos();
             setFalse();
             pentagono = true;
+            selecionado = true;
         }
 
         public Form1()
@@ -128,7 +137,10 @@ namespace proj_2_bi
         private void Form1_MouseClick(object sender, MouseEventArgs e)
         {
             click++;
-            
+            if (click>5)
+            {
+                click =1 ;
+            }
             pontos[(click*2)-2] = e.X;
             pontos[(click*2)-1] = e.Y;
             if (linha == true && click == 2)
@@ -139,12 +151,14 @@ namespace proj_2_bi
             {
                 Invalidate();
             }
-            else if(quadrado == true && click == 4)
+            else if(quadrado == true && click == 2)
             {
                 Invalidate();
             }
             else if(losango == true && click == 4)
             {
+                Invalidate();
+            }else if(pentagono == true && click == 5){
                 Invalidate();
             }
         }
@@ -155,19 +169,57 @@ namespace proj_2_bi
         }
         public void controladorLinha(PaintEventArgs e)
         {
-            if (click % 2 == 0)
-            {
-                retaBreseham(pontos[0], pontos[1], pontos[2], pontos[3], caneta(cor(255, 0, 0), 2), e);
-            }
+
+            retaBreseham(pontos[0], pontos[1], pontos[2], pontos[3], e);
+            
         }
         public void controladorTriangulo(PaintEventArgs e)
         {
-
+            retaBreseham(pontos[0], pontos[1], pontos[2], pontos[3], e);
+            retaBreseham(pontos[2], pontos[3], pontos[4], pontos[5], e);
+            retaBreseham(pontos[4], pontos[5], pontos[0], pontos[1], e);
+        }
+        public void controladorQuadrilatero(PaintEventArgs e)
+        {
+            int largura = Math.Abs(pontos[0] - pontos[2]);
+            int altura = Math.Abs(pontos[1] - pontos[3]);
+            int x, y;
+            if (pontos[0] < pontos[2])
+            {
+                x = pontos[0];
+            }
+            else
+            {
+                x = pontos[2];
+            }
+            if (pontos[1] < pontos[3])
+            {
+                y = pontos[1];
+            }
+            else
+            {
+                y = pontos[3];
+            }
+            desenhaQuadrilatero(e,x, y, altura, largura);
+        }
+        public void controladorLosango(PaintEventArgs e)
+        {
+            int[] pontosLosango = new int[pontos.Length - 2];
+            for(int i = 0; i < pontos.Length - 2; i++)
+            {
+                pontosLosango[i] = pontos[i];
+            }
+            desenhaFormas(e, pontosLosango);
+         }
+        public void controladorPentagono(PaintEventArgs e)
+        {
+            desenhaFormas(e, pontos);
         }
 
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
-
+            // TO-DO: calculo no controleLosango e no controlePentagono para não crusar as linhas
+            canetinha = caneta(cor(255, 0, 0), 1);
             if (linha)
             {
                 controladorLinha(e);
@@ -176,25 +228,27 @@ namespace proj_2_bi
             else if (circulo)
             {
 
-            }else if (quadrado)
-            {
-
-            }else if (losango)
-            {
-
-            }else if (triangulo)
-            {
-                triangulo
-
-            }else if (pentagono)
-            {
-
             }
-        
-            
-            
-           
-
+            else if (quadrado)
+            {
+                controladorQuadrilatero(e);
+                zerarPontos();
+            }
+            else if (losango)
+            {
+                controladorLosango(e);
+                zerarPontos();
+            }
+            else if (triangulo)
+            {
+                controladorTriangulo(e);
+                zerarPontos();
+            }
+            else if (pentagono)
+            {
+                controladorPentagono(e);
+                zerarPontos();
+            }
         }
     }
 }

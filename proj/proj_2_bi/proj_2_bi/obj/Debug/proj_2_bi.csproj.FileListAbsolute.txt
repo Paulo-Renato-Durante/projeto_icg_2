@@ -18,3 +18,14 @@ C:\Users\Ana Paula\Documents\projetos\icg\2_bi\progeto_2\proj\proj_2_bi\proj_2_b
 C:\Users\Ana Paula\Documents\projetos\icg\2_bi\progeto_2\proj\proj_2_bi\proj_2_bi\obj\Debug\proj_2_bi.csproj.CoreCompileInputs.cache
 C:\Users\Ana Paula\Documents\projetos\icg\2_bi\progeto_2\proj\proj_2_bi\proj_2_bi\obj\Debug\proj_2_bi.exe
 C:\Users\Ana Paula\Documents\projetos\icg\2_bi\progeto_2\proj\proj_2_bi\proj_2_bi\obj\Debug\proj_2_bi.pdb
+C:\Users\mates\Documents\UNIVAP\3 ano\ICG\progeto_icg_2\proj\proj_2_bi\proj_2_bi\bin\Debug\proj_2_bi.exe.config
+C:\Users\mates\Documents\UNIVAP\3 ano\ICG\progeto_icg_2\proj\proj_2_bi\proj_2_bi\bin\Debug\proj_2_bi.exe
+C:\Users\mates\Documents\UNIVAP\3 ano\ICG\progeto_icg_2\proj\proj_2_bi\proj_2_bi\bin\Debug\proj_2_bi.pdb
+C:\Users\mates\Documents\UNIVAP\3 ano\ICG\progeto_icg_2\proj\proj_2_bi\proj_2_bi\obj\Debug\proj_2_bi.csproj.AssemblyReference.cache
+C:\Users\mates\Documents\UNIVAP\3 ano\ICG\progeto_icg_2\proj\proj_2_bi\proj_2_bi\obj\Debug\proj_2_bi.csproj.SuggestedBindingRedirects.cache
+C:\Users\mates\Documents\UNIVAP\3 ano\ICG\progeto_icg_2\proj\proj_2_bi\proj_2_bi\obj\Debug\proj_2_bi.Form1.resources
+C:\Users\mates\Documents\UNIVAP\3 ano\ICG\progeto_icg_2\proj\proj_2_bi\proj_2_bi\obj\Debug\proj_2_bi.Properties.Resources.resources
+C:\Users\mates\Documents\UNIVAP\3 ano\ICG\progeto_icg_2\proj\proj_2_bi\proj_2_bi\obj\Debug\proj_2_bi.csproj.GenerateResource.cache
+C:\Users\mates\Documents\UNIVAP\3 ano\ICG\progeto_icg_2\proj\proj_2_bi\proj_2_bi\obj\Debug\proj_2_bi.csproj.CoreCompileInputs.cache
+C:\Users\mates\Documents\UNIVAP\3 ano\ICG\progeto_icg_2\proj\proj_2_bi\proj_2_bi\obj\Debug\proj_2_bi.exe
+C:\Users\mates\Documents\UNIVAP\3 ano\ICG\progeto_icg_2\proj\proj_2_bi\proj_2_bi\obj\Debug\proj_2_bi.pdb

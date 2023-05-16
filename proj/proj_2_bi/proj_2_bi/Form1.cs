@@ -4,6 +4,8 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
+using System.Runtime.Serialization.Formatters;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -15,6 +17,8 @@ namespace proj_2_bi
         int click;
         int[] pontos = new int[10];
         bool linha, circulo, quadrado, losango, triangulo, pentagono, selecionado;
+        int espessura = 0;
+        Color intensidade;
         Pen canetinha;
         public Color cor(int r, int g, int b)
         {
@@ -73,8 +77,6 @@ namespace proj_2_bi
             click = 0;
         }
         
-
-
         private void btn_linha_Click(object sender, EventArgs e)
         {
             zerarPontos();
@@ -170,7 +172,112 @@ namespace proj_2_bi
         private void Form1_MouseMove_1(object sender, MouseEventArgs e)
         {
             this.Text = e.X.ToString() + " " + e.Y.ToString();
+        } 
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
         }
+
+        private void button1_Click(object sender, EventArgs e) //PRETO
+        {
+            intensidade = Color.Black;
+        }
+
+        private void Branco_Click(object sender, EventArgs e)
+        {
+            intensidade = Color.White;
+        }
+
+        private void Cinza_Click(object sender, EventArgs e)
+        {
+            intensidade = Color.Gray;
+        }
+
+        private void CInzaClaro_Click(object sender, EventArgs e)
+        {
+            intensidade = Color.FromArgb(224, 224, 224);
+        }
+
+        private void Maroon_Click(object sender, EventArgs e)
+        {
+            intensidade = Color.Maroon;
+        }
+
+        private void RosaVermelho_Click(object sender, EventArgs e)
+        {
+            intensidade = Color.FromArgb(255, 128, 128);
+        }
+
+        private void Vermelho_Click(object sender, EventArgs e)
+        {
+            intensidade = Color.Red;
+        }
+
+        private void Rosinha_Click(object sender, EventArgs e)
+        {
+            intensidade = Color.FromArgb(255, 192, 192);
+        }
+
+        private void Laranja_Click(object sender, EventArgs e)
+        {
+            intensidade = Color.FromArgb(255, 128, 0);
+        }
+
+        private void VerdeMato_Click(object sender, EventArgs e)
+        {
+            intensidade = Color.FromArgb(192, 192, 0);
+        }
+
+        private void Amarelo_Click(object sender, EventArgs e)
+        {
+            intensidade = Color.Yellow;
+        }
+
+        private void AmareloClaro_Click(object sender, EventArgs e)
+        {
+            intensidade = Color.FromArgb(255, 255, 192);
+        }
+
+        private void Verde_Click(object sender, EventArgs e)
+        {
+            intensidade = Color.FromArgb(0, 192, 0);
+        }
+
+        private void VerdeClaro_Click(object sender, EventArgs e)
+        {
+            intensidade = Color.FromArgb(128, 255, 128);
+        }
+
+        private void AzulBebe_Click(object sender, EventArgs e)
+        {
+            intensidade = Color.FromArgb(192, 192, 255);
+        }
+
+        private void Ciano_Click(object sender, EventArgs e)
+        {
+            intensidade = Color.FromArgb(192, 255, 255);
+        }
+
+        private void Azul_Click(object sender, EventArgs e)
+        {
+            intensidade = Color.Blue;
+        }
+
+        private void AzulClaro_Click(object sender, EventArgs e)
+        {
+            intensidade = Color.FromArgb(128, 128, 255);
+        }
+
+        private void Roxo_Click(object sender, EventArgs e)
+        {
+            intensidade = Color.Purple;
+        }
+
+        private void RoxoClaro_Click(object sender, EventArgs e)
+        {
+            intensidade = Color.FromArgb(255, 192, 255);
+        }
+
         public void controladorLinha(PaintEventArgs e)
         {
 
@@ -184,9 +291,12 @@ namespace proj_2_bi
             retaBreseham(pontos[4], pontos[5], pontos[0], pontos[1], e);
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            if(comboBox1.SelectedIndex != null)
+            {
+                espessura = int.Parse(comboBox1.SelectedIndex.ToString());
+            }
         }
 
         public void controladorQuadrilatero(PaintEventArgs e)
@@ -220,7 +330,7 @@ namespace proj_2_bi
                 pontosLosango[i] = pontos[i];
             }
             desenhaFormas(e, pontosLosango);
-         }
+        }
         public void controladorPentagono(PaintEventArgs e)
         {
             desenhaFormas(e, pontos);
@@ -229,15 +339,22 @@ namespace proj_2_bi
         {
             desenharCirculo(pontos[0], pontos[1], int.Parse(Raio.Text), e);
         }
-
         public void controlarElipse(PaintEventArgs e)
         {
             desenharElipse(pontos[0], pontos[1], int.Parse(Largura.Text), int.Parse(Altura.Text), e);
         }
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
-            // TO-DO: calculo no controleLosango e no controlePentagono para não crusar as linhas
-            canetinha = caneta(cor(255, 0, 0), 1);
+            // TO-DO: calculo no controleLosango e no controlePentagono para não cruzar as linhas
+            if (intensidade.IsEmpty)
+            {
+                canetinha = caneta(Color.Black, espessura);
+            }
+            else
+            {
+                canetinha = caneta(intensidade, espessura);
+            }
+            
             if (linha)
             {
                 controladorLinha(e);

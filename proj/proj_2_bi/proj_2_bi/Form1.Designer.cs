@@ -59,6 +59,9 @@ namespace proj_2_bi
             this.AzulClaro = new System.Windows.Forms.Button();
             this.Azul = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.btn_salvar = new System.Windows.Forms.Button();
+            this.btn_carregar = new System.Windows.Forms.Button();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // btn_linha
@@ -369,11 +372,51 @@ namespace proj_2_bi
             this.comboBox1.Text = "Espessura";
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
+            // btn_salvar
+            // 
+            this.btn_salvar.Location = new System.Drawing.Point(13, 12);
+            this.btn_salvar.Name = "btn_salvar";
+            this.btn_salvar.Size = new System.Drawing.Size(75, 23);
+            this.btn_salvar.TabIndex = 30;
+            this.btn_salvar.Text = "salvar";
+            this.btn_salvar.UseVisualStyleBackColor = true;
+            this.btn_salvar.Click += new System.EventHandler(this.button1_Click_1);
+            // 
+            // btn_carregar
+            // 
+            this.btn_carregar.Location = new System.Drawing.Point(12, 41);
+            this.btn_carregar.Name = "btn_carregar";
+            this.btn_carregar.Size = new System.Drawing.Size(75, 23);
+            this.btn_carregar.TabIndex = 31;
+            this.btn_carregar.Text = "carregar";
+            this.btn_carregar.UseVisualStyleBackColor = true;
+            this.btn_carregar.Click += new System.EventHandler(this.btn_carregar_Click);
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Items.AddRange(new object[] {
+            "____________",
+            "_._._._._._._._",
+            "__.__.__.__.__",
+            "_ _ _ _ _ _ _ _ ",
+            "_   _   _   _   _"});
+            this.comboBox2.Location = new System.Drawing.Point(972, 84);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(118, 32);
+            this.comboBox2.TabIndex = 32;
+            this.comboBox2.Text = "estilo";
+            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1914, 1061);
+            this.Controls.Add(this.comboBox2);
+            this.Controls.Add(this.btn_carregar);
+            this.Controls.Add(this.btn_salvar);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.RoxoClaro);
             this.Controls.Add(this.Roxo);
@@ -448,6 +491,9 @@ namespace proj_2_bi
         private System.Windows.Forms.Button AzulClaro;
         private System.Windows.Forms.Button Azul;
         private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Button btn_salvar;
+        private System.Windows.Forms.Button btn_carregar;
+        private System.Windows.Forms.ComboBox comboBox2;
     }
 }
 

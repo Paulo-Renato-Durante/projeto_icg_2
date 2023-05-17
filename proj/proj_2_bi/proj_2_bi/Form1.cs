@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Runtime.Serialization.Formatters;
@@ -17,7 +18,9 @@ namespace proj_2_bi
         int click;
         int[] pontos = new int[10];
         bool linha, circulo, quadrado, losango, triangulo, pentagono, selecionado;
+
         int espessura = 0;
+        int estiloLinha;
         Color intensidade;
         Pen canetinha;
         public Color cor(int r, int g, int b)
@@ -68,6 +71,7 @@ namespace proj_2_bi
             pentagono = false;
             selecionado = false;
         }
+
         public void zerarPontos()
         {
             for(int i = 0; i <= pontos.Length - 1; i++)
@@ -138,34 +142,37 @@ namespace proj_2_bi
 
         private void Form1_MouseClick(object sender, MouseEventArgs e)
         {
-            click++;
-            if (click>5)
+            
+            if (selecionado)
             {
-                click =1 ;
-            }
-            pontos[(click*2)-2] = e.X;
-            pontos[(click*2)-1] = e.Y;
-            if (linha == true && click == 2)
-            {
-                Invalidate();
-            }
-            else if(triangulo == true && click == 3)
-            {
-                Invalidate();
-            }
-            else if(quadrado == true && click == 2)
-            {
-                Invalidate();
-            }
-            else if(losango == true && click == 4)
-            {
-                Invalidate();
-            }else if(pentagono == true && click == 5){
-                Invalidate();
-            }
-            else if (circulo == true && click > 0)
-            {
-                Invalidate();
+                click++;
+                
+                pontos[(click * 2) - 2] = e.X;
+                pontos[(click * 2) - 1] = e.Y;
+                if (linha == true && click == 2)
+                {
+                    Invalidate();
+                }
+                else if (triangulo == true && click == 3)
+                {
+                    Invalidate();
+                }
+                else if (quadrado == true && click == 2)
+                {
+                    Invalidate();
+                }
+                else if (losango == true && click == 4)
+                {
+                    Invalidate();
+                }
+                else if (pentagono == true && click == 5)
+                {
+                    Invalidate();
+                }
+                else if (circulo == true && click > 0)
+                {
+                    Invalidate();
+                }
             }
         }
 
@@ -242,7 +249,6 @@ namespace proj_2_bi
         {
             intensidade = Color.FromArgb(0, 192, 0);
         }
-
         private void VerdeClaro_Click(object sender, EventArgs e)
         {
             intensidade = Color.FromArgb(128, 255, 128);
@@ -299,6 +305,49 @@ namespace proj_2_bi
             }
         }
 
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            int value1 = 10;
+            double value2 = 3.14;
+            using (BinaryWriter writer = new BinaryWriter(File.Open(@"C:\Arquivos\dados.dat", FileMode.Create)))
+            {
+                writer.Write(value1);
+                writer.Write(value2);
+                writer.Write(2);
+            }
+
+            MessageBox.Show("Arquivo salvo com sucesso!");
+        }
+
+        private void btn_carregar_Click(object sender, EventArgs e)
+        {
+            if (File.Exists(@"C:\Arquivos\dados.dat"))
+            {
+                using (BinaryReader reader = new BinaryReader(File.Open(@"C:\Arquivos\dados.dat", FileMode.Open)))
+                {
+                    int value1 = reader.ReadInt32();
+                    
+                    double value2 = reader.ReadDouble();
+                    int val3 = reader.ReadInt32();
+
+                    MessageBox.Show($"Value1: {value1}, Value2: {value2}, val:{val3}");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Arquivo não encontrado!");
+            }
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBox2.SelectedIndex != null)
+            {
+                 estiloLinha = comboBox2.SelectedIndex;
+                 
+            }
+        }
+
         public void controladorQuadrilatero(PaintEventArgs e)
         {
             int largura = Math.Abs(pontos[0] - pontos[2]);
@@ -333,6 +382,7 @@ namespace proj_2_bi
         }
         public void controladorPentagono(PaintEventArgs e)
         {
+
             desenhaFormas(e, pontos);
         }
         public void controladorCirculo(PaintEventArgs e)
@@ -346,6 +396,7 @@ namespace proj_2_bi
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
             // TO-DO: calculo no controleLosango e no controlePentagono para não cruzar as linhas
+            // TO-DO: fazer o centro do circulo aparecer no click
             if (intensidade.IsEmpty)
             {
                 canetinha = caneta(Color.Black, espessura);
@@ -353,6 +404,10 @@ namespace proj_2_bi
             else
             {
                 canetinha = caneta(intensidade, espessura);
+            }
+            if (estiloLinha > 0)
+            {
+
             }
             
             if (linha)

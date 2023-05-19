@@ -25,6 +25,8 @@ namespace proj_2_bi
         Color intensidade;
         Pen canetinha;
 
+        int raio,raioX,raioY = 0;
+
         //Primitivas
         public Color cor(int r, int g, int b)
         {
@@ -99,7 +101,16 @@ namespace proj_2_bi
         }
         private void btn_circulo_Click(object sender, EventArgs e)
         {
-            string resp = Interaction.InputBox("Informe o raio do círculo: ", "", "", 400, 400);
+            string resp = Interaction.InputBox("deseja desenhar um circulo ou uma elipse[c/e]", "", "", 400, 400);
+            if(resp == "e")
+            {
+                raioX = int.Parse(Interaction.InputBox("informe o raio x", "", "", 400, 400));
+                raioY = int.Parse(Interaction.InputBox("informe o raio y", "", "", 400, 400));
+            }
+            else
+            {
+                raio = int.Parse(Interaction.InputBox("informe o raio", "", "", 400, 400));
+            }
             zerarPontos();
             setFalse();
             circulo = true;
@@ -341,11 +352,17 @@ namespace proj_2_bi
         }
         public void controladorCirculo(PaintEventArgs e)
         {
-            desenharCirculo(pontos[0]-int.Parse(Raio.Text)/2, pontos[1] - int.Parse(Raio.Text) / 2, int.Parse(Raio.Text), e);
-        }
-        public void controlarElipse(PaintEventArgs e)
-        {
-            desenharElipse(pontos[0], pontos[1], int.Parse(Largura.Text), int.Parse(Altura.Text), e);
+
+            if (raioX > 0)
+            {
+                
+                desenharElipse(pontos[0] - raioX / 2, pontos[1] - raioY / 2, raioX, raioY, e);
+            }
+            else
+            {
+                desenharCirculo(pontos[0] - raio / 2, pontos[1] - raio / 2, raio, e);
+            }
+            
         }
 
         private void Form1_MouseClick(object sender, MouseEventArgs e)
@@ -404,17 +421,9 @@ namespace proj_2_bi
                 controladorLinha(e);
                 zerarPontos();
             }
-            else if (circulo && click > 0)
+            else if (circulo && click ==1)
             {
-                if (string.IsNullOrEmpty(Raio.Text) && string.IsNullOrEmpty(Altura.Text) == false && string.IsNullOrEmpty(Largura.Text) == false)
-                {
-                    controlarElipse(e);
-                }
-                else if (string.IsNullOrEmpty(Altura.Text) && string.IsNullOrEmpty(Largura.Text) && string.IsNullOrEmpty(Raio.Text) == false)
-                {
-                    controladorCirculo(e);
-                }
-
+                controladorCirculo(e);
                 zerarPontos();
             }
             else if (quadrado)

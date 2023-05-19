@@ -35,9 +35,6 @@ namespace proj_2_bi
             this.btn_triangulo = new System.Windows.Forms.Button();
             this.btn_pentagono = new System.Windows.Forms.Button();
             this.btn_quadrado = new System.Windows.Forms.Button();
-            this.Raio = new System.Windows.Forms.TextBox();
-            this.Altura = new System.Windows.Forms.TextBox();
-            this.Largura = new System.Windows.Forms.TextBox();
             this.Preto = new System.Windows.Forms.Button();
             this.Branco = new System.Windows.Forms.Button();
             this.CInzaClaro = new System.Windows.Forms.Button();
@@ -129,31 +126,6 @@ namespace proj_2_bi
             this.btn_quadrado.Text = "⬜";
             this.btn_quadrado.UseVisualStyleBackColor = true;
             this.btn_quadrado.Click += new System.EventHandler(this.btn_quadrado_Click);
-            // 
-            // Raio
-            // 
-            this.Raio.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
-            this.Raio.Location = new System.Drawing.Point(350, 69);
-            this.Raio.Name = "Raio";
-            this.Raio.Size = new System.Drawing.Size(66, 27);
-            this.Raio.TabIndex = 6;
-            this.Raio.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
-            // 
-            // Altura
-            // 
-            this.Altura.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
-            this.Altura.Location = new System.Drawing.Point(422, 69);
-            this.Altura.Name = "Altura";
-            this.Altura.Size = new System.Drawing.Size(64, 27);
-            this.Altura.TabIndex = 7;
-            // 
-            // Largura
-            // 
-            this.Largura.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
-            this.Largura.Location = new System.Drawing.Point(492, 69);
-            this.Largura.Name = "Largura";
-            this.Largura.Size = new System.Drawing.Size(66, 27);
-            this.Largura.TabIndex = 8;
             // 
             // Preto
             // 
@@ -438,9 +410,6 @@ namespace proj_2_bi
             this.Controls.Add(this.Cinza);
             this.Controls.Add(this.Branco);
             this.Controls.Add(this.Preto);
-            this.Controls.Add(this.Largura);
-            this.Controls.Add(this.Altura);
-            this.Controls.Add(this.Raio);
             this.Controls.Add(this.btn_pentagono);
             this.Controls.Add(this.btn_triangulo);
             this.Controls.Add(this.btn_losangulo);
@@ -455,7 +424,6 @@ namespace proj_2_bi
             this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseClick);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseMove_1);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -467,9 +435,6 @@ namespace proj_2_bi
         private System.Windows.Forms.Button btn_triangulo;
         private System.Windows.Forms.Button btn_pentagono;
         private System.Windows.Forms.Button btn_quadrado;
-        private System.Windows.Forms.TextBox Raio;
-        private System.Windows.Forms.TextBox Altura;
-        private System.Windows.Forms.TextBox Largura;
         private System.Windows.Forms.Button Preto;
         private System.Windows.Forms.Button Branco;
         private System.Windows.Forms.Button CInzaClaro;

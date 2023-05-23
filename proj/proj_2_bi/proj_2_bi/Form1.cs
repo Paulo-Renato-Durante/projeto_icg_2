@@ -201,7 +201,9 @@ namespace proj_2_bi
         }
         private void Maroon_Click(object sender, EventArgs e)
         {
-            //intensidade = Color.Maroon;
+            r = 255;
+            g = 255;
+            b = 0;
         }
         private void RosaVermelho_Click(object sender, EventArgs e)
         {
@@ -235,43 +237,64 @@ namespace proj_2_bi
         }
         private void Amarelo_Click(object sender, EventArgs e)
         {
-            //intensidade = Color.Yellow;
+            r = 255;
+            g = 255;
+            b = 0;
         }
         private void AmareloClaro_Click(object sender, EventArgs e)
         {
-            //intensidade = Color.FromArgb(255, 255, 192);
+            r = 255;
+            g = 255;
+            b = 192;
         }
         private void Verde_Click(object sender, EventArgs e)
         {
-            //intensidade = Color.FromArgb(0, 192, 0);
+            r = 0;
+            g = 192;
+            b = 0;
         }
         private void VerdeClaro_Click(object sender, EventArgs e)
         {
-            //intensidade = Color.FromArgb(128, 255, 128);
+            r = 128;
+            g = 255;
+            b = 128;
         }
         private void AzulBebe_Click(object sender, EventArgs e)
         {
-            //intensidade = Color.FromArgb(192, 192, 255);
+            r = 192;
+            g = 192;
+            b = 255;
         }
         private void Ciano_Click(object sender, EventArgs e)
         {
-            //intensidade = Color.FromArgb(192, 255, 255);
+            r = 192;
+            g = 255;
+            b = 255;
         }
         private void Azul_Click(object sender, EventArgs e)
         {
-            //intensidade = Color.Blue;
+            r = 0;
+            g = 0;
+            b = 255;
         }
         private void AzulClaro_Click(object sender, EventArgs e)
         {
-            //intensidade = Color.FromArgb(128, 128, 255);
+            r = 128;
+            g = 128;
+            b = 255;
         }
         private void Roxo_Click(object sender, EventArgs e)
         {
-            //intensidade = Color.Purple;
+            r = 255;
+            g = 0;
+            b = 255;
+
         }
         private void RoxoClaro_Click(object sender, EventArgs e)
         {
-            //intensidade = Color.FromArgb(255, 192, 255);
+            r = 255;
+            g = 192;
+            b = 255;
         }
 
         //ComboBoxs
@@ -294,6 +317,7 @@ namespace proj_2_bi
         private void limparArquivo_Click(object sender, EventArgs e)
         {
             File.WriteAllText(@"C:\Arquivos\dados.dat", string.Empty);
+            MessageBox.Show("Arquivo limpo");
         }
 
         //serviços do arquivo

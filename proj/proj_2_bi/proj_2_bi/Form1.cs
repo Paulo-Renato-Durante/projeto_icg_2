@@ -18,12 +18,14 @@ namespace proj_2_bi
     {
         int click;
         int[] pontos = new int[6];
-        bool linha, circulo, quadrado, losango, triangulo, pentagono, selecionado;
+        string[] dadosSalvos;
+        bool linha, circulo, quadrado, losango, triangulo, pentagono, selecionado, desenhado, carregar ;
 
+        int tipoForma;
         int espessura = 0;
         int estiloLinha;
-        Color intensidade;
-        Pen canetinha;
+        int r,g,b;
+        
 
         int raio,raioX,raioY = 0;
 
@@ -36,42 +38,45 @@ namespace proj_2_bi
         {
             return new Pen(cor, espessura);
         }
-        public void retaBreseham(int x0, int y0, int x1, int y1, PaintEventArgs e)
+        public void retaBreseham(int x0, int y0, int x1, int y1, PaintEventArgs e,Pen caneta)
         {
-            e.Graphics.DrawLine(canetinha, x0, y0, x1, y1);
+            e.Graphics.DrawLine(caneta, x0, y0, x1, y1);
         }
-        public void pintap(int x, int y, PaintEventArgs e)
+        public void pintap(int x, int y, PaintEventArgs e, Pen caneta)
         {
-            e.Graphics.DrawLine(canetinha, x, y, x + 1, y);
+            e.Graphics.DrawLine(caneta, x, y, x + 1, y);
         }
-        public void desenharTriangulo(int x1,int y1, int x2, int y2, int x3, int y3,PaintEventArgs e)
+        public void desenharTriangulo(int x1,int y1, int x2, int y2, int x3, int y3,PaintEventArgs e, Pen caneta)
         {
-            retaBreseham(x1, y1, x2, y2, e);
-            retaBreseham(x2, y2, x3, y3, e);
-            retaBreseham(x3, y3, x1, y1, e);
+            retaBreseham(x1, y1, x2, y2, e, caneta);
+            retaBreseham(x2, y2, x3, y3, e, caneta);
+            retaBreseham(x3, y3, x1, y1, e, caneta);
         }
-        public void desenharQuadrilatero(PaintEventArgs e,int x, int y, int altura, int largura)
+        public void desenharQuadrilatero(PaintEventArgs e,int x, int y, int altura, int largura, Pen caneta)
         {
-            e.Graphics.DrawRectangle(canetinha, x, y, largura, altura);
+            e.Graphics.DrawRectangle(caneta, x, y, largura, altura);
         }
-        public void desenharCirculo(int xc, int yc, int raio, PaintEventArgs e)
+        public void desenharCirculo(int xc, int yc, int raio, PaintEventArgs e, Pen caneta)
         {
-            e.Graphics.DrawEllipse(canetinha, xc, yc, raio, raio);
+            e.Graphics.DrawEllipse(caneta, xc, yc, raio, raio);
         }
-        public void desenharElipse(int xc, int yc, int raiox, int raioy, PaintEventArgs e)
+        public void desenharElipse(int xc, int yc, int raiox, int raioy, PaintEventArgs e, Pen caneta)
         {
-            e.Graphics.DrawEllipse(canetinha, xc, yc, raiox, raioy);
+            e.Graphics.DrawEllipse(caneta, xc, yc, raiox, raioy);
         }
-        public void desenhaFormas(PaintEventArgs e, int[] pontos)
+        public void desenhaFormas(PaintEventArgs e, int[] pontos, Pen caneta)
         {
             for (int i = 0; i < pontos.Length - 2; i += 2)
             {
-                retaBreseham(pontos[i], pontos[i + 1], pontos[i + 2], pontos[i + 3], e);
+                retaBreseham(pontos[i], pontos[i + 1], pontos[i + 2], pontos[i + 3], e, caneta);
             }
-            retaBreseham(pontos[0], pontos[1], pontos[pontos.Length - 2], pontos[pontos.Length - 1], e);
+            retaBreseham(pontos[0], pontos[1], pontos[pontos.Length - 2], pontos[pontos.Length - 1], e, caneta);
         }
-
-
+        public Pen setEstiloLinha(float[] linha, Pen caneta)
+        {
+            caneta.DashPattern = linha;
+            return caneta;
+        }
         public void setFalse()
         {
             linha = false;
@@ -81,6 +86,8 @@ namespace proj_2_bi
             triangulo = false;
             pentagono = false;
             selecionado = false;
+            desenhado = false;
+            carregar = false;
         }
         public void zerarPontos()
         {
@@ -170,83 +177,101 @@ namespace proj_2_bi
 
         private void button1_Click(object sender, EventArgs e) //PRETO
         {
-            intensidade = Color.Black;
+            r=0;
+            g = 0;
+            b = 0;
         }
         private void Branco_Click(object sender, EventArgs e)
         {
-            intensidade = Color.White;
+            r = 255;
+            g = 255;
+            b = 255;
         }
         private void Cinza_Click(object sender, EventArgs e)
         {
-            intensidade = Color.Gray;
+            r = 125;
+            g = 125;
+            b = 125;
         }
         private void CInzaClaro_Click(object sender, EventArgs e)
         {
-            intensidade = Color.FromArgb(224, 224, 224);
+            r = 224;
+            g = 224;
+            b = 224;
         }
         private void Maroon_Click(object sender, EventArgs e)
         {
-            intensidade = Color.Maroon;
+            //intensidade = Color.Maroon;
         }
         private void RosaVermelho_Click(object sender, EventArgs e)
         {
-            intensidade = Color.FromArgb(255, 128, 128);
+            r = 255;
+            g = 128;
+            b = 128;
         }
         private void Vermelho_Click(object sender, EventArgs e)
         {
-            intensidade = Color.Red;
+            r = 255;
+            g = 0;
+            b = 0;
         }
         private void Rosinha_Click(object sender, EventArgs e)
         {
-            intensidade = Color.FromArgb(255, 192, 192);
+            r = 255;
+            g = 192;
+            b = 192;
         }
         private void Laranja_Click(object sender, EventArgs e)
         {
-            intensidade = Color.FromArgb(255, 128, 0);
+            r = 255;
+            g = 128;
+            b =0;
         }
         private void VerdeMato_Click(object sender, EventArgs e)
         {
-            intensidade = Color.FromArgb(192, 192, 0);
+            r = 192;
+            g = 192;
+            b = 0;
         }
         private void Amarelo_Click(object sender, EventArgs e)
         {
-            intensidade = Color.Yellow;
+            //intensidade = Color.Yellow;
         }
         private void AmareloClaro_Click(object sender, EventArgs e)
         {
-            intensidade = Color.FromArgb(255, 255, 192);
+            //intensidade = Color.FromArgb(255, 255, 192);
         }
         private void Verde_Click(object sender, EventArgs e)
         {
-            intensidade = Color.FromArgb(0, 192, 0);
+            //intensidade = Color.FromArgb(0, 192, 0);
         }
         private void VerdeClaro_Click(object sender, EventArgs e)
         {
-            intensidade = Color.FromArgb(128, 255, 128);
+            //intensidade = Color.FromArgb(128, 255, 128);
         }
         private void AzulBebe_Click(object sender, EventArgs e)
         {
-            intensidade = Color.FromArgb(192, 192, 255);
+            //intensidade = Color.FromArgb(192, 192, 255);
         }
         private void Ciano_Click(object sender, EventArgs e)
         {
-            intensidade = Color.FromArgb(192, 255, 255);
+            //intensidade = Color.FromArgb(192, 255, 255);
         }
         private void Azul_Click(object sender, EventArgs e)
         {
-            intensidade = Color.Blue;
+            //intensidade = Color.Blue;
         }
         private void AzulClaro_Click(object sender, EventArgs e)
         {
-            intensidade = Color.FromArgb(128, 128, 255);
+            //intensidade = Color.FromArgb(128, 128, 255);
         }
         private void Roxo_Click(object sender, EventArgs e)
         {
-            intensidade = Color.Purple;
+            //intensidade = Color.Purple;
         }
         private void RoxoClaro_Click(object sender, EventArgs e)
         {
-            intensidade = Color.FromArgb(255, 192, 255);
+            //intensidade = Color.FromArgb(255, 192, 255);
         }
 
         //ComboBoxs
@@ -254,7 +279,7 @@ namespace proj_2_bi
         {
             if(comboBox1.SelectedIndex != null)
             {
-                espessura = int.Parse(comboBox1.SelectedIndex.ToString());
+                espessura = comboBox1.SelectedIndex;
             }
         }
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
@@ -266,17 +291,37 @@ namespace proj_2_bi
             }
         }
 
+        private void limparArquivo_Click(object sender, EventArgs e)
+        {
+            File.WriteAllText(@"C:\Arquivos\dados.dat", string.Empty);
+        }
+
         //serviços do arquivo
         private void button1_Click_1(object sender, EventArgs e)
         {
-            int value1 = 10;
-            double value2 = 3.14;
-            using (BinaryWriter writer = new BinaryWriter(File.Open(@"C:\Arquivos\dados.dat", FileMode.Create)))
+            string point = "";
+            for (int i = 0; i <= pontos.Length - 2; i++)
             {
-                writer.Write(value1);
-                writer.Write(value2);
-                writer.Write(2);
+                if (pontos[i] != 0)
+                {
+                    point += pontos[i] + ", ";
+                }
             }
+            point += pontos[pontos.Length - 1]; 
+
+            File.AppendAllText(@"C:\Arquivos\dados.dat", tipoForma + Environment.NewLine);
+            File.AppendAllText(@"C:\Arquivos\dados.dat", estiloLinha + Environment.NewLine);
+            File.AppendAllText(@"C:\Arquivos\dados.dat", espessura + Environment.NewLine);
+            File.AppendAllText(@"C:\Arquivos\dados.dat", r + Environment.NewLine);
+            File.AppendAllText(@"C:\Arquivos\dados.dat", g + Environment.NewLine);
+            File.AppendAllText(@"C:\Arquivos\dados.dat", b + Environment.NewLine);
+            File.AppendAllText(@"C:\Arquivos\dados.dat", point + Environment.NewLine);
+            File.AppendAllText(@"C:\Arquivos\dados.dat", raio + Environment.NewLine);
+            File.AppendAllText(@"C:\Arquivos\dados.dat", raioX + Environment.NewLine);
+            File.AppendAllText(@"C:\Arquivos\dados.dat", raioY + Environment.NewLine);
+
+
+
 
             MessageBox.Show("Arquivo salvo com sucesso!");
         }
@@ -284,15 +329,9 @@ namespace proj_2_bi
         {
             if (File.Exists(@"C:\Arquivos\dados.dat"))
             {
-                using (BinaryReader reader = new BinaryReader(File.Open(@"C:\Arquivos\dados.dat", FileMode.Open)))
-                {
-                    int value1 = reader.ReadInt32();
-                    
-                    double value2 = reader.ReadDouble();
-                    int val3 = reader.ReadInt32();
-
-                    MessageBox.Show($"Value1: {value1}, Value2: {value2}, val:{val3}");
-                }
+                dadosSalvos = File.ReadAllLines(@"C:\Arquivos\dados.dat");
+                carregar = true;
+                Invalidate();
             }
             else
             {
@@ -301,17 +340,15 @@ namespace proj_2_bi
         }
 
         //Controladores
-        public void controladorLinha(PaintEventArgs e)
+        public void controladorLinha(PaintEventArgs e, Pen canetinha)
         {
-
-            retaBreseham(pontos[0], pontos[1], pontos[2], pontos[3], e);
-            
+            retaBreseham(pontos[0], pontos[1], pontos[2], pontos[3], e, canetinha);
         }
-        public void controladorTriangulo(PaintEventArgs e)
+        public void controladorTriangulo(PaintEventArgs e, Pen canetinha)
         {
-            desenharTriangulo(pontos[0], pontos[1], pontos[2], pontos[3], pontos[4], pontos[5], e);
+            desenharTriangulo(pontos[0], pontos[1], pontos[2], pontos[3], pontos[4], pontos[5], e, canetinha);
         }
-        public void controladorQuadrilatero(PaintEventArgs e)
+        public void controladorQuadrilatero(PaintEventArgs e, Pen canetinha)
         {
             int largura = Math.Abs(pontos[0] - pontos[2]);
             int altura = Math.Abs(pontos[1] - pontos[3]);
@@ -332,42 +369,45 @@ namespace proj_2_bi
             {
                 y = pontos[3];
             }
-            desenharQuadrilatero(e,x, y, altura, largura);
+            desenharQuadrilatero(e,x, y, altura, largura, canetinha);
         }
-        public void controladorLosango(PaintEventArgs e)
+        public void controladorLosango(PaintEventArgs e, Pen canetinha)
         {
             int x = pontos[0];
             int y = pontos[1];
             int[] pontosLosango = new int[8] {x,y-150,x+75,y,x,y+150,x-75,y};
 
-            desenhaFormas(e, pontosLosango);
+            desenhaFormas(e, pontosLosango, canetinha);
         }
-        public void controladorPentagono(PaintEventArgs e)
+        public void controladorPentagono(PaintEventArgs e, Pen canetinha)
         {
             int x = pontos[0];
             int y = pontos[1];
             int[] pontosPentagono = new int[10] { x, y - 100, x + 75, y, x+75, y + 100, x - 75, y+100, x-75,y };
 
-            desenhaFormas(e, pontosPentagono);
+            desenhaFormas(e, pontosPentagono, canetinha);
         }
-        public void controladorCirculo(PaintEventArgs e)
+        public void controladorCirculo(PaintEventArgs e, Pen canetinha)
         {
 
             if (raioX > 0)
             {
-                
-                desenharElipse(pontos[0] - raioX / 2, pontos[1] - raioY / 2, raioX, raioY, e);
+                desenharElipse(pontos[0] - raioX / 2, pontos[1] - raioY / 2, raioX, raioY, e, canetinha);
             }
             else
             {
-                desenharCirculo(pontos[0] - raio / 2, pontos[1] - raio / 2, raio, e);
+                desenharCirculo(pontos[0] - raio / 2, pontos[1] - raio / 2, raio, e, canetinha);
             }
             
         }
 
         private void Form1_MouseClick(object sender, MouseEventArgs e)
         {
-            
+            if (desenhado)
+            {
+                zerarPontos();
+                desenhado = false;
+            }
             if (selecionado)
             {
                 click++;
@@ -376,76 +416,139 @@ namespace proj_2_bi
                 pontos[(click * 2) - 1] = e.Y;
                 if (linha == true && click == 2)
                 {
+                    desenhado = true;
                     Invalidate();
                 }
                 else if (triangulo == true && click == 3)
                 {
+                    desenhado = true;
                     Invalidate();
                 }
                 else if (quadrado == true && click == 2)
                 {
+                    desenhado = true;
                     Invalidate();
                 }
                 else if (losango == true && click == 1)
                 {
+                    desenhado = true;
                     Invalidate();
                 }
                 else if (pentagono == true && click == 1)
                 {
+                    desenhado = true;
                     Invalidate();
                 }
                 else if (circulo == true && click == 1)
                 {
+                    desenhado = true;
                     Invalidate();
                 }
             }
         }
-
+        public void pegarPontosSalvos(string pontosSalvos)
+        {
+            string[] points = pontosSalvos.Split(new string[] { ", " }, StringSplitOptions.None);
+            for(int i = 0; i <= points.Length - 1; i++)
+            {
+                pontos[i] = int.Parse(points[i]);
+            }
+        }
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
-            if (intensidade.IsEmpty)
+            if (carregar)
             {
-                canetinha = caneta(Color.Black, espessura);
+                for(int i = 0; i <= dadosSalvos.Length - 1; i+=10 )
+                {
+                    
+                    Pen canetaCarregado =caneta(cor(int.Parse(dadosSalvos[i+3]), int.Parse(dadosSalvos[i+4]), int.Parse(dadosSalvos[i+5])), int.Parse(dadosSalvos[i+2]));
+                    float[] estiloCarregado = tipoEstilo(int.Parse(dadosSalvos[i + 1]));
+                    canetaCarregado = setEstiloLinha(estiloCarregado, canetaCarregado);
+                    pegarPontosSalvos(dadosSalvos[i + 6]);
+                    if(int.Parse(dadosSalvos[i]) == 1)
+                    {
+                        controladorLinha(e, canetaCarregado);
+                    }else if(int.Parse(dadosSalvos[i]) == 2)
+                    {
+                        raio = int.Parse(dadosSalvos[i + 7]);
+                        raioX = int.Parse(dadosSalvos[i + 8]);
+                        raioY = int.Parse(dadosSalvos[i + 9]);
+                        controladorCirculo(e, canetaCarregado);
+                    }else if(int.Parse(dadosSalvos[i]) == 3)
+                    {
+                        controladorQuadrilatero(e, canetaCarregado);
+                    }else if(int.Parse(dadosSalvos[i]) == 4)
+                    {
+                        controladorLosango(e, canetaCarregado);
+                    }else if(int.Parse(dadosSalvos[i]) == 5)
+                    {
+                        controladorTriangulo(e, canetaCarregado);
+                    }
+                    else
+                    {
+                        controladorPentagono(e, canetaCarregado);
+                    }
+                }
             }
-            else
-            {
-                canetinha = caneta(intensidade, espessura);
-            }
-            if (estiloLinha > 0)
-            {
-
-            }
+            
+            Pen canetinha = caneta(cor(r,g,b), espessura);
+            float[] estilo = tipoEstilo(estiloLinha);
+            canetinha = setEstiloLinha(estilo, canetinha);
             
             if (linha)
             {
-                controladorLinha(e);
-                zerarPontos();
+                tipoForma = 1;
+                controladorLinha(e, canetinha);
+                
             }
             else if (circulo && click ==1)
             {
-                controladorCirculo(e);
-                zerarPontos();
+                tipoForma = 2;
+                controladorCirculo(e, canetinha);
             }
             else if (quadrado)
             {
-                controladorQuadrilatero(e);
-                zerarPontos();
+                tipoForma = 3;
+                controladorQuadrilatero(e, canetinha);
             }
             else if (losango)
             {
-                controladorLosango(e);
-                zerarPontos();
+                tipoForma = 4;
+                controladorLosango(e, canetinha);
             }
             else if (triangulo)
             {
-                controladorTriangulo(e);
-                zerarPontos();
+                tipoForma = 5;
+                controladorTriangulo(e, canetinha);
             }
             else if (pentagono)
             {
-                controladorPentagono(e);
-                zerarPontos();
+                tipoForma = 6;
+                controladorPentagono(e, canetinha);
             }
+
+            
         }
+        public float[] tipoEstilo(int estiloLinha)
+        {
+            if(estiloLinha== 0)
+            {
+                return new float[] { 1.0f };
+            }
+            else if (estiloLinha == 1)
+            {
+                return new float[4] { 15, 10, 3,10 };
+            }else if (estiloLinha == 2)
+            {
+                return new float[4] { 30, 5, 2, 5 };
+            }else if(estiloLinha == 3)
+            {
+                return new float[2] { 10, 5 };
+            }
+            else
+            {
+                return new float[2] { 20, 5 };
+            }
+        } 
     }
 }

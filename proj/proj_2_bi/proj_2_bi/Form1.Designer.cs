@@ -59,6 +59,7 @@ namespace proj_2_bi
             this.btn_salvar = new System.Windows.Forms.Button();
             this.btn_carregar = new System.Windows.Forms.Button();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.limparArquivo = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btn_linha
@@ -381,11 +382,22 @@ namespace proj_2_bi
             this.comboBox2.Text = "estilo";
             this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
             // 
+            // limparArquivo
+            // 
+            this.limparArquivo.Location = new System.Drawing.Point(12, 73);
+            this.limparArquivo.Name = "limparArquivo";
+            this.limparArquivo.Size = new System.Drawing.Size(75, 43);
+            this.limparArquivo.TabIndex = 33;
+            this.limparArquivo.Text = "limpar arquivo";
+            this.limparArquivo.UseVisualStyleBackColor = true;
+            this.limparArquivo.Click += new System.EventHandler(this.limparArquivo_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1914, 1061);
+            this.Controls.Add(this.limparArquivo);
             this.Controls.Add(this.comboBox2);
             this.Controls.Add(this.btn_carregar);
             this.Controls.Add(this.btn_salvar);
@@ -459,6 +471,7 @@ namespace proj_2_bi
         private System.Windows.Forms.Button btn_salvar;
         private System.Windows.Forms.Button btn_carregar;
         private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.Button limparArquivo;
     }
 }
 

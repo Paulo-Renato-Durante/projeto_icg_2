@@ -17,6 +17,7 @@ namespace proj_2_bi
     public partial class Form1 : Form
     {
         OpenFileDialog ofd = new OpenFileDialog();
+        
         int click;
         int[] pontos = new int[6];
         string[] dadosSalvos;
@@ -26,14 +27,7 @@ namespace proj_2_bi
         int espessura = 0;
         int estiloLinha;
         int r,g,b;
-        
-
         int raio,raioX,raioY = 0;
-
-
-
-
-
 
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
@@ -41,7 +35,6 @@ namespace proj_2_bi
             {
                 for (int i = 0; i <= dadosSalvos.Length - 1; i += 10)
                 {
-
                     Pen canetaCarregado = caneta(cor(int.Parse(dadosSalvos[i + 3]), int.Parse(dadosSalvos[i + 4]), int.Parse(dadosSalvos[i + 5])), int.Parse(dadosSalvos[i + 2]));
                     float[] estiloCarregado = tipoEstilo(int.Parse(dadosSalvos[i + 1]));
                     canetaCarregado = setEstiloLinha(estiloCarregado, canetaCarregado);
@@ -111,6 +104,53 @@ namespace proj_2_bi
                 controladorPentagono(e, canetinha);
             }
         }
+
+        private void Form1_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (desenhado)
+            {
+                zerarPontos();
+                desenhado = false;
+            }
+            if (selecionado)
+            {
+                click++;
+
+                pontos[(click * 2) - 2] = e.X;
+                pontos[(click * 2) - 1] = e.Y;
+                if (linha == true && click == 2)
+                {
+                    desenhado = true;
+                    Invalidate();
+                }
+                else if (triangulo == true && click == 3)
+                {
+                    desenhado = true;
+                    Invalidate();
+                }
+                else if (quadrado == true && click == 2)
+                {
+                    desenhado = true;
+                    Invalidate();
+                }
+                else if (losango == true && click == 1)
+                {
+                    desenhado = true;
+                    Invalidate();
+                }
+                else if (pentagono == true && click == 1)
+                {
+                    desenhado = true;
+                    Invalidate();
+                }
+                else if (circulo == true && click == 1)
+                {
+                    desenhado = true;
+                    Invalidate();
+                }
+            }
+        }
+
         //Primitivas
         public Color cor(int r, int g, int b)
         {
@@ -199,7 +239,6 @@ namespace proj_2_bi
                 pontos[i] = int.Parse(points[i]);
             }
         }
-
         public float[] tipoEstilo(int estiloLinha)
         {
             if (estiloLinha == 0)
@@ -300,9 +339,8 @@ namespace proj_2_bi
         {
             string point = concatenaPontos("");
             string caminho = "";
-
+            ofd.InitialDirectory = @"C:\Arquivos\";
             int resp = int.Parse(Interaction.InputBox("deseja criar um novo arquivo[1] ou utilizar um ja existente[2]", "", "", 400, 400));
-
             if(resp == 2)
             {
                 if(ofd.ShowDialog() == DialogResult.OK)
@@ -332,6 +370,7 @@ namespace proj_2_bi
         private void btn_carregar_Click(object sender, EventArgs e)
         {
             string caminho = "";
+            ofd.InitialDirectory = @"C:\Arquivos\";
             if (ofd.ShowDialog() == DialogResult.OK)
             {
                 caminho = ofd.FileName;
@@ -407,51 +446,7 @@ namespace proj_2_bi
                 desenharCirculo(pontos[0] - raio / 2, pontos[1] - raio / 2, raio, e, canetinha);
             } 
         }
-        private void Form1_MouseClick(object sender, MouseEventArgs e)
-        {
-            if (desenhado)
-            {
-                zerarPontos();
-                desenhado = false;
-            }
-            if (selecionado)
-            {
-                click++;
-                
-                pontos[(click * 2) - 2] = e.X;
-                pontos[(click * 2) - 1] = e.Y;
-                if (linha == true && click == 2)
-                {
-                    desenhado = true;
-                    Invalidate();
-                }
-                else if (triangulo == true && click == 3)
-                {
-                    desenhado = true;
-                    Invalidate();
-                }
-                else if (quadrado == true && click == 2)
-                {
-                    desenhado = true;
-                    Invalidate();
-                }
-                else if (losango == true && click == 1)
-                {
-                    desenhado = true;
-                    Invalidate();
-                }
-                else if (pentagono == true && click == 1)
-                {
-                    desenhado = true;
-                    Invalidate();
-                }
-                else if (circulo == true && click == 1)
-                {
-                    desenhado = true;
-                    Invalidate();
-                }
-            }
-        }
+
 
         //Cores
         private void button1_Click(object sender, EventArgs e)
